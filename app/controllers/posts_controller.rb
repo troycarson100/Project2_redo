@@ -1,7 +1,20 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.order(vote: :desc)
-    @posts
+  end
+
+  def upvote
+    @post = Post.find(params[:id])
+    @post.vote += 1
+    @post.save
+    redirect_to :back
+  end
+
+  def downvote
+    @post = Post.find(params[:id])
+    @post.vote -= 1
+    @post.save
+    redirect_to :back
   end
 
   def show
