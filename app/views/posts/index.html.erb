@@ -1,2 +1,8 @@
-<h1>Posts#index</h1>
-<p>Find me in app/views/posts/index.html.erb</p>
+<h1>All Songs</h1>
+
+<%= link_to "Crete New User!", new_user_path%> <br>
+<%= link_to "View all Users", users_path%>
+
+<% @posts.each do |s| %>
+  <h1><%= link_to post.user , user_path(s) %> <%= link_to "x", post_path(s), method: :delete%></h1>
+<% end %>
