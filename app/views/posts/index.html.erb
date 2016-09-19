@@ -4,10 +4,10 @@
 <%= link_to "View all Users", users_path%>
 
 <% @posts.each do |post| %>
-  <h1><%= link_to post.user.name , user_path(post.user) %> <%= link_to "x", post_path(post), method: :delete%></h1>
+  <h2><%= link_to post.user.name , user_path(post.user) %> <%= link_to "x", post_path(post), method: :delete%></h2>
   <p><%= post.vote %></p>
   <p><%= post.embed %></p>
-  <%= post.comments.count %>  
+  <%= post.comments.count %> comment
   <% post.comments.each do |comment| %>
     <p><%= comment.user.name%></p>
     <p><%= comment.body %></p>
