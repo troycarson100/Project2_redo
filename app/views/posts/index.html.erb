@@ -3,6 +3,8 @@
 <%= link_to "Crete New User!", new_user_path%> <br>
 <%= link_to "View all Users", users_path%>
 
-<% @posts.each do |s| %>
-  <h1><%= link_to post.user , user_path(s) %> <%= link_to "x", post_path(s), method: :delete%></h1>
+<% @posts.each do |post| %>
+  <h1><%= link_to post.user.name , user_path(post.user) %> <%= link_to "x", post_path(post), method: :delete%></h1>
+  <p><%= post.vote %></p>
+  <p><%= post.embed %></p>
 <% end %>
