@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   has_many :posts
+  has_many :comments
 
   def password=(unencrypted_password)
     @password = unencrypted_password
