@@ -5,7 +5,8 @@
 <hr>
 
 <%= form_for @new_post do |f| %>
-  <%= f.text_area :embed %>
+  <%= f.text_area :embed, placeholder: "Enter Soundcloud embed" %>
+  <br>
   <%= f.submit %>
 <%end%>
 

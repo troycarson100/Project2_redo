@@ -29,11 +29,15 @@ class PostsController < ApplicationController
 
   def create
     @post = Post.new
-    @post.embed = params[:post][:embed]
     @post.user = current_user
     @post.vote = 0
+    if params[:post][:embed][0,7] == "<iframe"
+       @post.embed = params[:post][:embed]
     if @post.save
-      redirect_to root_path
+        redirect_to root_path
+    end
+    else
+        redirect_to root_path
     end
   end
 
@@ -44,7 +48,7 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @post= Post.find(params[:id])
     @post.destroy
     redirect_to(posts_path)
   end
