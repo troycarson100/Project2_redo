@@ -2,13 +2,21 @@
 
 <%= link_to "Crete New User!", new_user_path%> <br>
 <%= link_to "View all Users", users_path%>
+<hr>
 
+<%= form_for @new_post do |f| %>
+  <%= f.text_area :embed %>
+  <%= f.submit %>
+<%end%>
+
+
+<hr>
 <% @posts.each do |post| %>
-  <h2><%= link_to post.user.name , user_path(post.user) %> <%= link_to "delete post", post_path(post), method: :delete%></h2>
+  <h2><%= link_to post.user.name, user_path(post.user) %> <%= link_to "delete post", post_path(post), method: :delete%></h2>
   <%= link_to 'upvote', "/posts/#{post.id}/upvote" %>
   <p><%= post.vote %></p>
   <%= link_to 'downvote', "/posts/#{post.id}/downvote" %>
-  <p><%= post.embed %></p>
+  <p><%= post.embed.html_safe %></p>
   <%= link_to post.comments.count.to_s + "comment", post%>
-
+<%= link_to '<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>'.html_safe, "/posts/#{post.id}/upvote" %>
 <% end %>

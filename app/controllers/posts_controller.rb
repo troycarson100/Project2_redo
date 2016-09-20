@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.order(vote: :desc)
+    @new_post = Post.new
   end
 
   def upvote
@@ -20,18 +21,19 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comment = Comment.new
+
   end
 
   def new
-    @post = Post.new
   end
 
   def create
     @post = Post.new
     @post.embed = params[:post][:embed]
-
+    @post.user = current_user
+    @post.vote = 0
     if @post.save
-      redirect_to post_path
+      redirect_to root_path
     end
   end
 
