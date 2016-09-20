@@ -2,7 +2,12 @@ Rails.application.routes.draw do
   root 'posts#index'
 
   resources :users
-  resources :posts
+  resources :posts do
+    resources :comments
+  end
+
+  delete '/logout' => 'sessions#destroy', as: :logout
+  resources :sessions, only: [:new, :create]
 
   get '/posts/:id/upvote' => 'posts#upvote'
   get '/posts/:id/downvote' => 'posts#downvote'

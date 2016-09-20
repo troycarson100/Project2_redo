@@ -1,2 +1,19 @@
-<h1>Posts#show</h1>
-<p>Find me in app/views/posts/show.html.erb</p>
+<p><%= @post.embed %></p>
+<br>
+<p> Posted by: <%= @post.user.name %></p>
+
+<%= @post.comments.count %> comment
+
+<br>
+
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.text_area :body %>
+  <%= f.submit %>
+<%end%>
+
+<br>
+
+<% @post.comments.each do |comment| %>
+  <p><%= comment.user.name%></p>
+  <p><%= comment.body %></p>
+<% end %>

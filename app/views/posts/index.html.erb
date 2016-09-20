@@ -9,9 +9,6 @@
   <p><%= post.vote %></p>
   <%= link_to 'downvote', "/posts/#{post.id}/downvote" %>
   <p><%= post.embed %></p>
-  <%= post.comments.count %> comment
-  <% post.comments.each do |comment| %>
-    <p><%= comment.user.name%></p>
-    <p><%= comment.body %></p>
-  <% end %>
+  <%= link_to post.comments.count.to_s + "comment", post%>
+
 <% end %>
