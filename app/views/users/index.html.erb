@@ -1,6 +1,6 @@
-<%= link_to "Crete New User!", new_user_path%> <br>
-<hr>
+
 
 <% @users.each do |u| %>
-  <h1><%= link_to u.name, user_path(u) %> <%= link_to "x", user_path(u), method: :delete%></h1>
+  <h2><%= link_to u.name, user_path(u) %></h2>
+  
 <% end %>

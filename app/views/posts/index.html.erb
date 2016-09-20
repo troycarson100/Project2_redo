@@ -1,19 +1,23 @@
 <h1>All Songs</h1>
 
-<%= link_to "Crete New User!", new_user_path%> <br>
-<%= link_to "View all Users", users_path%>
-<hr>
 
-<%= form_for @new_post do |f| %>
-  <%= f.text_area :embed, placeholder: "Enter Soundcloud embed" %>
-  <br>
-  <%= f.submit %>
+<% if logged_in?%>
+  <%= form_for @new_post do |f| %>
+    <%= f.text_area :embed, placeholder: "Enter Soundcloud embed" %>
+    <br>
+    <%= f.submit %>
+  <%end%>
 <%end%>
 
-
 <hr>
+
 <% @posts.each do |post| %>
-  <h2><%= link_to post.user.name, user_path(post.user) %> <%= link_to "delete post", post_path(post), method: :delete%></h2>
+  <h2><%= link_to post.user.name, user_path(post.user) %>
+    
+    <%if logged_in? && current_user.id == post.user_id%>
+       <%=link_to "delete post", post_path(post), method: :delete%></h2>
+    <%end%>
+
   <%= link_to 'upvote', "/posts/#{post.id}/upvote" %>
   <p><%= post.vote %></p>
   <%= link_to 'downvote', "/posts/#{post.id}/downvote" %>

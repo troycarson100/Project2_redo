@@ -1,6 +1,14 @@
 <hr>
 User: <h2><%= @user.name %></h2> <hr>
 Bio: <h2><%= @user.bio %></h2>
-
 <hr>
-<%= link_to "Back to all Users", users_path%>
+
+<% @posts.each do |post| %>
+  <%if logged_in? && current_user.id == post.user_id%>
+     <%=link_to "delete post", post_path(post), method: :delete%></h2>
+  <%end%>
+  <%= link_to 'upvote', "/posts/#{post.id}/upvote" %>
+  <p><%= post.vote %></p>
+  <%= link_to 'downvote', "/posts/#{post.id}/downvote" %>
+    <%= post.embed.html_safe %>
+<%end%>
