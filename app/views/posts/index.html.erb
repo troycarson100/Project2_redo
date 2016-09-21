@@ -13,14 +13,16 @@
 
 <% @posts.each do |post| %>
   <h2><%= link_to post.user.name, user_path(post.user) %>
-    
+  <%= image_tag post.user.photo.url(:thumb), :style => "border: 2px solid black;"%>
     <%if logged_in? && current_user.id == post.user_id%>
        <%=link_to "delete post", post_path(post), method: :delete%></h2>
     <%end%>
 
-  <%= link_to 'upvote', "/posts/#{post.id}/upvote" %>
-  <p><%= post.vote %></p>
-  <%= link_to 'downvote', "/posts/#{post.id}/downvote" %>
+<hr>
+  <p><%= link_to 'upvote', "/posts/#{post.id}/upvote" %></p>
+  <h5><%= post.score %></h5>
+  <p><%= link_to 'downvote', "/posts/#{post.id}/downvote" %></p>
+
   <p><%= post.embed.html_safe %></p>
   <%= link_to post.comments.count.to_s + "comment", post%>
 <%= link_to '<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>'.html_safe, "/posts/#{post.id}/upvote" %>

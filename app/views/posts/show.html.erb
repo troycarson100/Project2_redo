@@ -1,6 +1,6 @@
-<hr>
-<p><%= @post.vote %></p>
 <p><%= @post.embed.html_safe %></p>
+<hr>
+  Song Score: <h5><%= @post.votes.where({sentiment: 1}).count - @post.votes.where({sentiment: -1}).count %></h5>
 <br>
 <p> Posted by: <%= @post.user.name %></p>
 
@@ -9,13 +9,18 @@
 <br>
 <%if logged_in?%>
   <%= form_for [@post, @comment] do |f| %>
+  <hr>
     <%= f.text_area :body %>
+    <hr>
     <%= f.submit %>
   <%end%>
 <%end%>
 <br>
 
 <% @post.comments.each do |comment| %>
-  <p><%= comment.user.name%></p>
+  <strong><%= comment.user.name%></strong>
   <p><%= comment.body %></p>
+  <%if logged_in? && current_user.id == comment.user_id%>
+   <%=link_to "x", post_comment_path(@post, comment), method: :delete%></h2>
+  <%end%>
 <% end %>

@@ -25,6 +25,10 @@
                 <%= f.password_field :password_confirmation, class: 'form-control' %>
             </div>
         </div>
+        <div>
+          Profile Photo: <%= f.file_field :photo %>
+        </div>
+        <hr>
         <div class="form-group">
             <div class="col-md-8 col-md-offset-4">
                 <%= f.submit 'Create Account', class: 'btn btn-success' %>

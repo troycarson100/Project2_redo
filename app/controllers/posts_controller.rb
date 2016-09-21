@@ -1,21 +1,7 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.order(vote: :desc)
+    @posts = Post.all.sort_by{ |p| p.score }.reverse
     @new_post = Post.new
-  end
-
-  def upvote
-    @post = Post.find(params[:id])
-    @post.vote += 1
-    @post.save
-    redirect_to :back
-  end
-
-  def downvote
-    @post = Post.find(params[:id])
-    @post.vote -= 1
-    @post.save
-    redirect_to :back
   end
 
   def show
@@ -24,6 +10,7 @@ class PostsController < ApplicationController
   end
 
   def new
+    @story = Story.new
   end
 
   def create
@@ -49,6 +36,9 @@ class PostsController < ApplicationController
   def destroy
     @post= Post.find(params[:id])
     @post.destroy
-    redirect_to(posts_path)
+    redirect_to posts_path
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    redirect_to post_path
   end
 end

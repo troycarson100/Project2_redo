@@ -3,11 +3,12 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
+    # @posts = @users.posts.sort_by{ |p| p.score }.reverse
   end
 
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts.order(vote: :desc)
+    @posts = @user.posts.sort_by{ |p| p.score }.reverse
   end
 
   def new
@@ -34,13 +35,14 @@ class UsersController < ApplicationController
   end
 
   def destroy
+    session[:user_id] = nil if params[:id].to_i == current_user.id
     @user = User.find(params[:id])
     @user.destroy
-    redirect_to(users_path)
+    redirect_to(root_path)
   end
 
   private
   def user_params
-  params.require(:user).permit(:name,:email,:bio, :password,:password_confirmation)
+  params.require(:user).permit(:name,:email,:bio, :password,:password_confirmation, :photo)
   end
 end

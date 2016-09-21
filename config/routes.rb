@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'posts#index'
 
   resources :users
@@ -6,11 +7,12 @@ Rails.application.routes.draw do
     resources :comments
   end
 
+    get '/posts/:post_id/upvote' => 'votes#upvote'
+    get '/posts/:post_id/downvote' => 'votes#downvote'
+
   delete '/logout' => 'sessions#destroy', as: :logout
   resources :sessions, only: [:new, :create]
 
-  get '/posts/:id/upvote' => 'posts#upvote'
-  get '/posts/:id/downvote' => 'posts#downvote'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
