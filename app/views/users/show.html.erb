@@ -1,16 +1,24 @@
 <hr>
-<%= image_tag @user.photo.url(:thumb), :style => "border: 2px solid black;"%>
-<h2><%= @user.name %></h2>
+<h2 class="center"><%= @user.name %></h2>
+<div class="center"><%= image_tag @user.photo.url(:thumb), :style => "border: 2px solid black;"%></div>
 <hr>
-<h2><%= @user.bio %></h2>
+<p class="center"><%= @user.bio %></p>
 <hr>
 
-<% @posts.each do |post| %>
-  <%if logged_in? && current_user.id == post.user_id%>
-     <%=link_to "delete post", post_path(post), method: :delete %></h2>
-  <%end%>
-    <%= link_to 'upvote', "/posts/#{post.id}/upvote" %>
-  <p><%= post.score %></p>
-  <%= link_to 'downvote', "/posts/#{post.id}/downvote" %>
+<div class="container-fluid">
+    <% @posts.each do |post| %>
+      <div class="row">
+      <div class="col-xs-3 col-sm-3 col-md-3 vertAlign votePad">
+      <%if logged_in? && current_user.id == post.user_id%>
+         <%=link_to "delete post", post_path(post), method: :delete %></h2>
+      <%end%>
+      <%= link_to '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>'.html_safe, "/posts/#{post.id}/upvote" %>
+      <p><%= post.score %></p>
+      <%= link_to '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'.html_safe, "/posts/#{post.id}/downvote" %>
+ </div>
+<div class="col-xs-9 col-sm-9 col-md-9">
     <%= post.embed.html_safe %>
+  </div>
+</div>
 <%end%>
+  </div>

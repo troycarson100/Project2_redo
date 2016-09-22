@@ -12,6 +12,7 @@
   <div class="col-sm-9 col-md-9 col-lg-9">
     <% post = u.posts.sort_by{ |p| p.score }.reverse.first %>
     <%= post.embed.html_safe if post %>
+    <%= '<p class="pMarg">This user has no current posts</p>'.html_safe unless post %>
   </div>
 </div>
 </div>

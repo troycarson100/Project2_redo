@@ -18,3 +18,16 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+body {
+  background-color: rgba(112, 170, 167, 0.45);
+}
+.main-container{
+  background-color: whitesmoke;
+}
+.navbar{
+  margin-bottom: 0;
+}
+.pMarg{
+  margin-top: 50px;
+}
