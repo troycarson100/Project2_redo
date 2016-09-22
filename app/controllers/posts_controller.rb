@@ -7,6 +7,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = User.find(params[:id])
     @comment = Comment.new
   end
 
@@ -38,8 +39,12 @@ class PostsController < ApplicationController
     @post= Post.find(params[:id])
     @post.destroy
     redirect_to posts_path
+
+    unless @post.comments.count == 0
     @comment = Comment.find(params[:id])
     @comment.destroy
-    redirect_to post_path
+    redirect_to posts_path
+    end
+
   end
 end

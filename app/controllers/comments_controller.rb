@@ -17,7 +17,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.create(comment_params)
 
     # add this comment to the current user's list of comments, aka fill in the user_id field on that comment.
-    User.last.comments << @comment
+    current_user.comments << @comment
     redirect_to post_path(@post)
   end
 
