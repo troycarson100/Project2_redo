@@ -1,6 +1,7 @@
-<% @users.each do |u| %>
-  <h2><%= link_to u.name, user_path(u) %></h2>
-  <%= image_tag u.photo.url(:thumb), :style => "border: 2px solid black;"%>
-  <% post = u.posts.sort_by{ |p| p.score }.reverse.first %>
-  <%= post.embed.html_safe if post %>
-<% end %>
+
+  <% @users.each do |u| %>
+    <h2><%= link_to u.name, user_path(u) %></h2>
+    <%= image_tag u.photo.url(:thumb), :style => "border: 2px solid black;"%>
+    <% post = u.posts.sort_by{ |p| p.score }.reverse.first %>
+    <%= post.embed.html_safe if post %>
+    <% end %>

@@ -1,3 +1,40 @@
 // Place all the styles related to the posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.vertAlign {
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  vertical-align: middle;
+
+}
+.center {
+  text-align: center;
+  margin-top: -2px;
+}
+span.glyphicon {
+  font-size: 2.5em;
+}
+.row {
+    height: 100%;
+    border: 3px outset white;
+    border-radius: 4px;
+}
+.glyphicon-chevron-up{
+  // margin-bottom: 20px;
+  // margin-top: 10px;
+  top: 66px;
+  line-height: -1;
+}
+.glyphicon-chevron-down{
+  // margin-top:10px;
+  margin-right: 6px;
+  top: 66px;
+  line-height: -1;
+}
+.votePad {
+  padding-top: 35px;
+  margin: 0 auto;
+}

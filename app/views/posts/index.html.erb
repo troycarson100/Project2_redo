@@ -1,29 +1,39 @@
-<h1>All Songs</h1>
 
-
-<% if logged_in?%>
-  <%= form_for @new_post do |f| %>
-    <%= f.text_area :embed, placeholder: "Enter Soundcloud embed" %>
-    <br>
-    <%= f.submit %>
-  <%end%>
-<%end%>
-
-<hr>
-
-<% @posts.each do |post| %>
-  <h2><%= link_to post.user.name, user_path(post.user) %>
-  <%= image_tag post.user.photo.url(:thumb), :style => "border: 2px solid black;"%>
-    <%if logged_in? && current_user.id == post.user_id%>
-       <%=link_to "delete post", post_path(post), method: :delete%></h2>
+  <h1>Songs By Ranking</h1>
+  <% if logged_in?%>
+    <%= form_for @new_post do |f| %>
+      <%= f.text_area :embed, placeholder: "Enter Soundcloud embed", :class => "form-control"%>
+      <br>
+      <%= f.submit 'Post', :class => "btn btn-default"%>
     <%end%>
+  <%end%>
+
 
 <hr>
-  <p><%= link_to 'upvote', "/posts/#{post.id}/upvote" %></p>
-  <h5><%= post.score %></h5>
-  <p><%= link_to 'downvote', "/posts/#{post.id}/downvote" %></p>
-
-  <p><%= post.embed.html_safe %></p>
-  <%= link_to post.comments.count.to_s + "comment", post%>
-<%= link_to '<span class="glyphicon glyphicon-menu-up" aria-hidden="true"></span>'.html_safe, "/posts/#{post.id}/upvote" %>
-<% end %>
+<div class="container-fluid">
+  <% @posts.each do |post| %>
+    <div class="row">
+      <div class="col-xs-2 col-sm-2 col-md-2 vertAlign">
+<div>
+      <h4 class="center"><%= link_to post.user.name, user_path(post.user) %></h4> <p>posted a track.</p>
+      <%= image_tag post.user.photo.url(:thumb), :style => "border: 2px solid black; "%>
+        <%if logged_in? && current_user.id == post.user_id%>
+           <%=link_to "delete post", post_path(post), method: :delete%>
+        <%end%>
+</div>
+   </div>
+<div>
+    <div class="col-xs-2 col-sm-2 col-md-2 vertAlign votePad">
+      <%= link_to '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>'.html_safe, "/posts/#{post.id}/upvote" %>
+      <%=post.score%>
+      <%= link_to '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'.html_safe, "/posts/#{post.id}/downvote" %>
+    </div>
+</div>
+  <div class="col-xs-8 col-sm-8 col-md-8">
+    <%= post.embed.html_safe %>
+      <%= link_to post.comments.count.to_s + " comments", post%>
+  </div>
+</div>
+  <% end %>
+  <div class="container invis"> </div>
+</div>

@@ -2,8 +2,11 @@ class UsersController < ApplicationController
   before_action :authorize, only: [:show]
 
   def index
-    @users = User.all
-    # @posts = @users.posts.sort_by{ |p| p.score }.reverse
+    if params[:search]
+      @users = User.where("name LIKE ?", "%#{params[:search]}%")
+    else
+      @users = User.all
+    end
   end
 
   def show
