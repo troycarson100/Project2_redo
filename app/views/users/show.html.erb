@@ -4,7 +4,14 @@
 <hr>
 <p class="center"><%= @user.bio %></p>
 <hr>
-
+<% if logged_in?%>
+  <%= form_for @new_post do |f| %>
+    <%= f.text_area :embed, placeholder: "Enter Soundcloud embed", :class => "form-control"%>
+    <br>
+    <%= f.submit 'Post', :class => "btn btn-default"%>
+  <%end%>
+<%end%>
+<hr>
 <div class="container-fluid">
     <% @posts.each do |post| %>
       <div class="row">

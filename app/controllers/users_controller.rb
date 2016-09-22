@@ -13,6 +13,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.sort_by{ |p| p.score }.reverse
+    @new_post = Post.new
   end
 
   def new
