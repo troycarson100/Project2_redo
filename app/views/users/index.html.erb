@@ -1,7 +1,18 @@
+  <h1>Users/Top Songs</h1>
+  <hr>
+
 
   <% @users.each do |u| %>
-    <h2><%= link_to u.name, user_path(u) %></h2>
-    <%= image_tag u.photo.url(:thumb), :style => "border: 2px solid black;"%>
+  <div class="col-sm-12 col-md-12 col-lg-12">
+<div class="row">
+  <div class="col-sm-3 col-md-3 col-lg-3">
+    <h2 class="center"><%= link_to u.name, user_path(u) %></h2>
+    <div class="center"><%= image_tag u.photo.url(:thumb), :style => "border: 2px solid black;"%></div>
+  </div>
+  <div class="col-sm-9 col-md-9 col-lg-9">
     <% post = u.posts.sort_by{ |p| p.score }.reverse.first %>
     <%= post.embed.html_safe if post %>
+  </div>
+</div>
+</div>
     <% end %>

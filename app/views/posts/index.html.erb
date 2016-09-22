@@ -12,7 +12,7 @@
 <hr>
 <div class="container-fluid">
   <% @posts.each do |post| %>
-    <div class="row">
+    <div class="row <%= 'best-song' if post == @best %>">
       <div class="col-xs-2 col-sm-2 col-md-2 vertAlign">
 <div>
       <h4 class="center"><%= link_to post.user.name, user_path(post.user) %></h4> <p>posted a track.</p>

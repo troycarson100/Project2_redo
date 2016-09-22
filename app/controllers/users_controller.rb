@@ -3,10 +3,11 @@ class UsersController < ApplicationController
 
   def index
     if params[:search]
-      @users = User.where("name LIKE ?", "%#{params[:search]}%")
+      @users = User.where("name ILIKE ?", "%#{params[:search]}%")
     else
       @users = User.all
     end
+      @users = @users.sort_by{ |u| u.posts.count }.reverse
   end
 
   def show

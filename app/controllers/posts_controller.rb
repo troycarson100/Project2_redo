@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   def index
     @posts = Post.all.sort_by{ |p| p.score }.reverse
+    @best = @posts.first
     @new_post = Post.new
   end
 
