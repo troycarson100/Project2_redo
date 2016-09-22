@@ -7,7 +7,6 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
-    @user = User.find(params[:id])
     @comment = Comment.new
   end
 
@@ -19,7 +18,7 @@ class PostsController < ApplicationController
     @post = Post.new
     @post.user = current_user
     @post.vote = 0
-    if params[:post][:embed][0,7] == "<iframe"
+    if params[:post][:embed][0,32] == '<iframe width="100%" height="166'
        @post.embed = params[:post][:embed]
     if @post.save
         redirect_to root_path

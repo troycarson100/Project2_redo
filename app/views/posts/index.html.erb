@@ -18,7 +18,7 @@
       <h4 class="center"><%= link_to post.user.name, user_path(post.user) %></h4> <p>posted a track.</p>
       <%= image_tag post.user.photo.url(:thumb), :style => "border: 2px solid black; "%>
         <%if logged_in? && current_user.id == post.user_id%>
-           <%=link_to "delete post", post_path(post), method: :delete%>
+           <p class="center"><%=link_to "delete post", post_path(post), method: :delete%></p>
         <%end%>
 </div>
    </div>
