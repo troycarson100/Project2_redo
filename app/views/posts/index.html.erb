@@ -24,9 +24,15 @@
    </div>
 <div>
     <div class="col-xs-2 col-sm-2 col-md-2 vertAlign votePad">
+      <% if logged_in?%>
       <%= link_to '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>'.html_safe, "/posts/#{post.id}/upvote" %>
       <%=post.score%>
       <%= link_to '<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'.html_safe, "/posts/#{post.id}/downvote" %>
+      <%else%>
+      <%= '<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>'.html_safe %>
+      <%=post.score%>
+      <%='<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>'.html_safe%>
+      <%end%>
     </div>
 </div>
   <div class="col-xs-8 col-sm-8 col-md-8">
