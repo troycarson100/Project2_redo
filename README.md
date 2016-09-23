@@ -4,7 +4,7 @@
 
 UG Cloud (UnderGround SoundCloud) is a full stack Web application designed as a platform for filtering through under-ground music on SoundCloud. Users can post there favorite music from SoundCloud that has under 100K plays after making a profile. From there, users will use UG's voting system that will rank and order all songs based on "Song Score". The highest rated songs will move to the top of the charts (and page).
 
-![Screen Shot](./desktop/SS_2.png)
+![Screen Shot](./readmeAssets/SS_2.png)
 
 ##How to Use
 
@@ -22,7 +22,7 @@ Using Rails MVC framework helped me connect back end to front end with ease. Boo
 
 ##Original Wireframe
 
-![Screen Shot](./desktop/Wire.png)
+![Screen Shot](./readmeAssets/Wire.png)
 
 
 ##Not-Yet-Implemented
