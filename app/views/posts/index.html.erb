@@ -1,5 +1,5 @@
 
-  <h1>Songs By Ranking <span class="smaller">Find songs at <a href="http://www.soundcloud.com">soundcloud</a></span></h1>
+  <h1>Songs By Ranking <span class="smaller">Find songs at <a href="http://www.soundcloud.com" target="blank">soundcloud</a></span></h1>
   <% if logged_in?%>
     <%= form_for @new_post do |f| %>
       <%= f.text_area :embed, placeholder: "Enter Soundcloud embed", :class => "form-control"%>
